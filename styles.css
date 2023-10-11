@@ -12,7 +12,12 @@
     --colorLight1: #DBE2EF;
     --colorLight2: #F9F7F7;
 }
-
+#credit{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .wrapper{
     width:100vw;
     height:100vh;
@@ -21,7 +26,7 @@
 }
 
 h1 {
-    text-align: center;
+  
     text-transform:uppercase;
     padding-top: 20px;
 }
