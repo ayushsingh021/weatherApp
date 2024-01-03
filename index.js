@@ -110,9 +110,9 @@ function renderWeatherInfo(weatherInfo) {
     countryIcon.src = `https://flagcdn.com/144x108/${weatherInfo?.sys?.country.toLowerCase()}.png`;
     desc.innerText = weatherInfo?.weather?.[0]?.description;
     weatherIcon.src = `http://openweathermap.org/img/w/${weatherInfo?.weather?.[0]?.icon}.png`;
-    temp.innerText = weatherInfo?.main?.temp;
-    windspeed.innerHTML = weatherInfo?.wind?.speed;
-    humidity.innerHTML = weatherInfo?.main?.humidity;
+    temp.innerText = weatherInfo?.main?.temp ;
+    windspeed.innerHTML = weatherInfo?.wind?.speed + ' m/s';
+    humidity.innerHTML = weatherInfo?.main?.humidity + ' %';
     cloudiness.innerHTML = weatherInfo?.clouds?.all;
 
 
@@ -165,7 +165,7 @@ async function fetchSearchWeatherInfo(city) {
             `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
           );
         const data = await response.json();
-        console.log(data.wind.speed)
+        console.log(data.wind.unit)
         loadingScreen.classList.remove("active");
         userInfoContainer.classList.add("active");
         renderWeatherInfo(data);
