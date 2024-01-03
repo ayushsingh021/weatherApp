@@ -12,7 +12,10 @@ const userInfoContainer = document.querySelector(".user-info-container");
 
 
 let oldTab = userTab;
-const API_KEY = "d1845658f92b31c64bd94f06f7188c9c";
+// const API_KEY = "d1845658f92b31c64bd94f06f7188c9c";
+
+const API_KEY = "e4681c5043319f26379d59985d4c59c5";
+
 oldTab.classList.add("current-tab"); //adding css prop of current tab
 getfromSessionStorage();
 
@@ -89,7 +92,7 @@ async function fetchUserWeatherInfo(coordinates) {
     }
 
 }
-
+//main function which is controlling UI in app
 function renderWeatherInfo(weatherInfo) {
     //fistly, we have to fethc the elements 
 
@@ -108,9 +111,9 @@ function renderWeatherInfo(weatherInfo) {
     desc.innerText = weatherInfo?.weather?.[0]?.description;
     weatherIcon.src = `http://openweathermap.org/img/w/${weatherInfo?.weather?.[0]?.icon}.png`;
     temp.innerText = weatherInfo?.main?.temp;
-    windspeed.innertext = weatherInfo?.wind?.speed;
-    humidity.innertext = weatherInfo?.main?.humidity;
-    cloudiness.innerText = weatherInfo?.clouds?.all;
+    windspeed.innerHTML = weatherInfo?.wind?.speed;
+    humidity.innerHTML = weatherInfo?.main?.humidity;
+    cloudiness.innerHTML = weatherInfo?.clouds?.all;
 
 
 }
@@ -158,9 +161,11 @@ async function fetchSearchWeatherInfo(city) {
 
     try {
         const response = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+            
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
           );
         const data = await response.json();
+        console.log(data.wind.speed)
         loadingScreen.classList.remove("active");
         userInfoContainer.classList.add("active");
         renderWeatherInfo(data);
